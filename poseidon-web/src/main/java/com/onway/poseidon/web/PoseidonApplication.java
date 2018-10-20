@@ -1,8 +1,12 @@
 package com.onway.poseidon.web;
 
 
+import com.onway.poseidon.service.entity.User;
+import com.onway.poseidon.service.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,16 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @SpringBootApplication
 @RestController
-public class Application {
+@ComponentScan("com.onway.poseidon")
+public class PoseidonApplication {
+
+    @Autowired
+    private UserService userService;
 
     public static void main(String[] args){
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(PoseidonApplication.class, args);
     }
 
     @RequestMapping("/poseidon")
     public String getUserById() {
-        System.out.println("sadfasd");
-        return "zhangsan";
+        User user = userService.selectById(1L);
+        return user.toString();
     }
 
 
