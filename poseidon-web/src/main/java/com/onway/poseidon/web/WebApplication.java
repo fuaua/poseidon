@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 @ComponentScan("com.onway.poseidon")
-public class PoseidonApplication {
+public class WebApplication {
 
     @Autowired
     private UserService userService;
 
     public static void main(String[] args){
-        SpringApplication.run(PoseidonApplication.class, args);
+        SpringApplication.run(WebApplication.class, args);
     }
 
     @RequestMapping("/poseidon")
