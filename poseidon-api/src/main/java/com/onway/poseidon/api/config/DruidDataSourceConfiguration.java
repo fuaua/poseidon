@@ -24,12 +24,9 @@ public class DruidDataSourceConfiguration {
 
     @Bean
     public ServletRegistrationBean druidServlet() {
-        ServletRegistrationBean reg = new ServletRegistrationBean();
-        reg.setServlet(new StatViewServlet());
-        reg.addUrlMappings("/druid/*");
-        //reg.addInitParameter("allow", "127.0.0.1"); //白名单
-        reg.addInitParameter("resetEnable","false");
-        return reg;
+        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),"/druid/*");
+        servletRegistrationBean.addInitParameter("resetEnable","true");
+        return servletRegistrationBean;
     }
 
     @Bean
@@ -40,7 +37,6 @@ public class DruidDataSourceConfiguration {
         //设置忽略请求
         initParams.put("exclusions", "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*");
         filterRegistrationBean.setInitParameters(initParams);
-        filterRegistrationBean.addInitParameter("profileEnable", "true");
         filterRegistrationBean.addInitParameter("principalCookieName","USER_COOKIE");
         filterRegistrationBean.addInitParameter("principalSessionName","");
         filterRegistrationBean.addInitParameter("aopPatterns","com.wzj.service");
@@ -54,7 +50,6 @@ public class DruidDataSourceConfiguration {
         return new DruidDataSource();
     }
 
-    // 配置事物管理器
     @Bean(name="transactionManager")
     public DataSourceTransactionManager transactionManager(){
         return new DataSourceTransactionManager(dataSource());
