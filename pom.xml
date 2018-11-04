@@ -16,6 +16,8 @@
         <module>poseidon-api</module>
         <module>poseidon-service</module>
         <module>poseidon-common</module>
+        <module>poseidon-eureka</module>
+        <module>poseidon-getway</module>
     </modules>
 
     <parent>
@@ -33,6 +35,17 @@
         </dependency>
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Dalston.SR5</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
