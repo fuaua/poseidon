@@ -13,6 +13,7 @@ target/
 
 *.iml
 .idea/
+logs/
 
 *tmp
 *~
