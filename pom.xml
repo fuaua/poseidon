@@ -17,7 +17,7 @@
         <module>poseidon-service</module>
         <module>poseidon-common</module>
         <module>poseidon-eureka</module>
-        <module>poseidon-getway</module>
+        <module>poseidon-gateway</module>
     </modules>
 
     <parent>
