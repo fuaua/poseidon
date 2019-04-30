@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @desc: 功能描述
  */
 @SpringBootApplication
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @ComponentScan("com.onway.poseidon")
 public class ApiApplication {
 

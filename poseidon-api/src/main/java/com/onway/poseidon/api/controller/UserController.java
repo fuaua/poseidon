@@ -1,5 +1,6 @@
 package com.onway.poseidon.api.controller;
 
+import com.onway.poseidon.common.base.Response;
 import com.onway.poseidon.service.entity.User;
 import com.onway.poseidon.service.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,14 +22,9 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("getUserInfo")
-    public String getUserInfo() {
-        log.debug("debug用户信息====");
-        log.info("info获取用户信息===============");
-        log.warn("warn用户====");
-        log.error("error出错了");
+    public Response getUserInfo() {
         User user = userService.selectById(1L);
-        log.info("查询到的用户是{}", user.getUsername());
-        return user.getUsername();
+        return Response.succeed(user);
     }
 
 }
