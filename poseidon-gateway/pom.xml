@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>poseidon-getway</artifactId>
+    <artifactId>poseidon-gateway</artifactId>
 
 
 </project>
