@@ -11,7 +11,6 @@
 
 
     <modules>
-        <module>poseidon-card</module>
         <module>poseidon-web</module>
         <module>poseidon-api</module>
         <module>poseidon-service</module>

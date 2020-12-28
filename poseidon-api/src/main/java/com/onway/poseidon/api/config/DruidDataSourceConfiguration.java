@@ -50,9 +50,4 @@ public class DruidDataSourceConfiguration {
         return new DruidDataSource();
     }
 
-    @Bean(name="transactionManager")
-    public DataSourceTransactionManager transactionManager(){
-        return new DataSourceTransactionManager(dataSource());
-    }
-
 }

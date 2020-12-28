@@ -26,9 +26,11 @@ public class UserController {
         log.info("info获取用户信息===============");
         log.warn("warn用户====");
         log.error("error出错了");
-        User user = userService.selectById(1L);
-        log.info("查询到的用户是{}", user.getUsername());
-        return user.getUsername();
+        userService.addUser();
+        return "success";
+//        User user = userService.selectById(1L);
+//        log.info("查询到的用户是{}", user.getUsername());
+//        return user.getUsername();
     }
 
 }
