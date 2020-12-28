@@ -16,12 +16,11 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * @author: fuheng
- * @date: 2018-10-11 22:45
+ * @date: 2020-12-24 22:50
  * @desc: 功能描述
  */
 @SpringBootApplication
-@RestController
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @ComponentScan("com.onway.poseidon")
 @Slf4j
 public class WebApplication {

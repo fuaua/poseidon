@@ -26,6 +26,11 @@
             <artifactId>poseidon-service</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.onway</groupId>
+            <artifactId>poseidon-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
