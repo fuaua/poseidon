@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  * @author: fuheng
- * @date: 2018-10-25 23:17
+ * @date: 2020-12-24 22:50
  * @desc: 功能描述
  */
 @Configuration
@@ -48,11 +48,6 @@ public class DruidDataSourceConfiguration {
     @ConfigurationProperties(prefix="spring.datasource")
     public DataSource dataSource(){
         return new DruidDataSource();
-    }
-
-    @Bean(name="transactionManager")
-    public DataSourceTransactionManager transactionManager(){
-        return new DataSourceTransactionManager(dataSource());
     }
 
 }
