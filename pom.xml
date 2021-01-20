@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.8.RELEASE</version>
+        <version>1.5.16.RELEASE</version>
     </parent>
 
     <dependencies>
@@ -32,11 +32,6 @@
             <version>1.16.10</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -44,7 +39,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Hoxton.SR9</version>
+                <version>Dalston.SR5</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -56,7 +51,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.8.RELEASE</version>
+                <version>1.5.16.RELEASE</version>
                 <configuration>
                     <mainClass>com.core.Starter</mainClass>
                     <layout>ZIP</layout>
@@ -73,6 +68,7 @@
             </plugin>
         </plugins>
     </build>
+
 
 
 </project>
