@@ -12,7 +12,6 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -21,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
  * @desc: 功能描述
  */
 @SpringBootApplication
-//@EnableDiscoveryClient
+@EnableDiscoveryClient
 @ComponentScan("com.onway.poseidon")
 @Slf4j
 public class WebApplication {
