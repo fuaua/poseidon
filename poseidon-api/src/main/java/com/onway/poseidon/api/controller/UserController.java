@@ -1,6 +1,6 @@
 package com.onway.poseidon.api.controller;
 
-import com.onway.poseidon.common.api.Response;
+import com.onway.poseidon.common.base.Response;
 import com.onway.poseidon.service.entity.User;
 import com.onway.poseidon.service.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class UserController {
     @RequestMapping("getUserInfo")
     public Response getUserInfo() {
         User user = userService.selectById(1L);
-        return Response.SUCCESS(user);
+        return Response.succeed(user);
     }
 
 }

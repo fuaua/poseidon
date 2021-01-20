@@ -1,6 +1,7 @@
 package com.onway.poseidon.web;
 
 
+import com.onway.poseidon.common.base.Response;
 import com.onway.poseidon.service.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,9 @@ public class WebApplication {
     }
 
     @RequestMapping("/poseidon")
-    public String getUserById() {
-        String temp = restTemplate.postForObject("http://poseidon-api/api/getUserInfo", null, String.class);
-        log.info(temp);
-        return "string";
+    public Response getUserById() {
+        String s = restTemplate.postForObject("http://poseidon-api/api/getUserInfo", Response.class, String.class);
+        return Response.succeed(s);
     }
 
     @Bean
