@@ -1,5 +1,7 @@
 package com.onway.poseidon.service.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,12 +20,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("s_user")
-public class User {
+public class User extends BaseLongEntity {
 
-    private Long id;
-    private String username;
-    private String loginname;
-    private String userpass;
+    private String userName;
+    private String loginName;
+    private String userPass;
     private Integer state;
     private Date createTime;
 
