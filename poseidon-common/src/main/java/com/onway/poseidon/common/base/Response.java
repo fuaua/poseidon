@@ -58,20 +58,24 @@ public class Response<T> {
         this.payload = payload;
     }
 
-    public static Response succeed() {
-        return new Response(SUCCESS_CODE, SUCCESS_MESSAGE);
+    public static Response<Object> succeed() {
+        return new Response<>(SUCCESS_CODE, SUCCESS_MESSAGE);
     }
 
     public static <T> Response<T> succeed(T payload) {
-        return new Response(SUCCESS_CODE, SUCCESS_MESSAGE, payload);
+        return new Response<>(SUCCESS_CODE, SUCCESS_MESSAGE, payload);
     }
 
-    public static Response fail() {
-        return new Response(BAD_REQUEST, BAD_REQUEST_MESSAGE);
+    public static Response<Object> fail() {
+        return new Response<>(BAD_REQUEST, BAD_REQUEST_MESSAGE);
     }
 
-    public static Response response(Long code, String message) {
-        return new Response(code, message);
+    public static Response<Object> fail(String msg) {
+        return new Response<>(BAD_REQUEST, msg);
+    }
+
+    public static Response<Object> response(Long code, String message) {
+        return new Response<>(code, message);
     }
 
 }

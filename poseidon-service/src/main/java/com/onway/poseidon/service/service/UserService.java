@@ -1,9 +1,8 @@
 package com.onway.poseidon.service.service;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.onway.poseidon.service.entity.User;
 import com.onway.poseidon.service.mapper.UserMapper;
-import com.onway.poseidon.service.service.base.BaseServiceImpl;
+import com.onway.poseidon.service.service.base.BaseService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class UserService extends BaseServiceImpl<Long, UserMapper, User> implements IUserService {
+public class UserService extends BaseService<User, UserMapper> implements IUserService {
 
 
 }

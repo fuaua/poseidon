@@ -1,4 +1,4 @@
-package com.onway.poseidon.web.dto.request;
+package com.onway.poseidon.web.dto.request.user;
 
 import com.onway.poseidon.web.dto.request.base.BasePageRequest;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.Date;
  * @description:
  */
 @Data
-public class UserListRequest extends BasePageRequest {
+public class UserPageRequest extends BasePageRequest {
 
     /**
      * 用户名

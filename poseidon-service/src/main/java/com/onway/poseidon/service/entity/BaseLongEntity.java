@@ -16,4 +16,5 @@ public class BaseLongEntity implements Serializable {
 
     @TableId(type = IdType.INPUT)
     private Long id;
+
 }
