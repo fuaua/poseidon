@@ -1,4 +1,4 @@
-package com.onway.poseidon.common.base;
+package com.onway.poseidon.common.base.response;
 
 import lombok.Data;
 
@@ -13,22 +13,27 @@ public class Response<T> {
     /**
      * 返回成功码值
      */
-    private static final Long SUCCESS_CODE = 200L;
+    public static final Long SUCCESS_CODE = 200L;
 
     /**
      * 成功默认返回语
      */
-    private static final String SUCCESS_MESSAGE = "操作成功";
+    public static final String SUCCESS_MESSAGE = "操作成功";
 
     /**
      * 错误的请求
      */
-    private static final Long BAD_REQUEST = 400L;
+    public static final Long BAD_REQUEST = 400L;
+
+    /**
+     * 参数错误
+     */
+    public static final Long BAD_PARAM = 401L;
 
     /**
      * 错误的请求返回语
      */
-    private static final String BAD_REQUEST_MESSAGE = "错误的请求";
+    public static final String BAD_REQUEST_MESSAGE = "错误的请求";
 
 
     /**

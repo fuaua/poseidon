@@ -1,4 +1,4 @@
-package com.onway.poseidon.web.dto.request.base;
+package com.onway.poseidon.common.base.request;
 
 import java.io.Serializable;
 
@@ -8,4 +8,7 @@ import java.io.Serializable;
  * @description:
  */
 public class BaseRequest implements Serializable {
+
+
+
 }
