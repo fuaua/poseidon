@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @description:
  */
 @Data
-public class BasePageRequest implements Serializable {
+public class BasePageRequest extends BaseRequest implements Serializable {
 
     /**
      * 每页数据条数

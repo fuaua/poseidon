@@ -72,6 +72,11 @@ public class BaseService<T, M extends BaseMapper<T>>{
     }
 
 
+    /**
+     * 通用普通分页
+     * @param pageRequest
+     * @return
+     */
     public Page<T> pageList(BasePageRequest pageRequest) {
         QueryWrapper<T> wrapper = new QueryWrapper<>();
         Page<T> page = new Page<>(pageRequest.getPageNum(),pageRequest.getPageSize());

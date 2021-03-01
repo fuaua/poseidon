@@ -61,7 +61,8 @@ public class UserController {
     @PostMapping(value = "pageList", produces = "application/json")
     public Response<Object> pageList(@RequestBody UserPageRequest userPageRequest) {
         try{
-            return Response.succeed();
+            Page<User> userPage = userService.pageList(userPageRequest);
+            return Response.succeed(userPage);
         }catch (Exception e) {
             e.printStackTrace();
             return Response.fail("查询用户列表失败");
