@@ -1,4 +1,4 @@
-package com.onway.poseidon.service.service.base;
+package com.onway.poseidon.service.utils;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 
@@ -14,6 +14,6 @@ public interface DbConstant extends StringPool,Serializable {
     /**
      * 主键set方法名
      */
-    String invokeSetId = "setId";
+    String INVOKE_SET_ID = "setId";
 
 }

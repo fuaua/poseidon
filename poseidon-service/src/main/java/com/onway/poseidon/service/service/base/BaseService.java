@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.onway.poseidon.common.base.request.BasePageRequest;
 import com.onway.poseidon.service.enums.YesOrNotEnum;
+import com.onway.poseidon.service.utils.DbConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Method;
@@ -52,7 +53,7 @@ public class BaseService<T, M extends BaseMapper<T>>{
     public Long add(T entity) {
         long id = IdWorker.getId();
         try {
-            Method setIdMethod = entity.getClass().getSuperclass().getMethod(DbConstant.invokeSetId, Long.class);
+            Method setIdMethod = entity.getClass().getSuperclass().getMethod(DbConstant.INVOKE_SET_ID, Long.class);
             setIdMethod.invoke(entity, id);
         }catch (Exception e) {
             e.printStackTrace();

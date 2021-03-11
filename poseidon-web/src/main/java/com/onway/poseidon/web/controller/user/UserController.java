@@ -7,6 +7,7 @@ import com.onway.poseidon.common.enums.StateEnum;
 import com.onway.poseidon.service.entity.User;
 import com.onway.poseidon.service.service.UserService;
 import com.onway.poseidon.web.dto.request.user.UserAddRequest;
+import com.onway.poseidon.web.dto.request.user.UserDelRequest;
 import com.onway.poseidon.web.dto.request.user.UserLoginRequest;
 import com.onway.poseidon.web.dto.request.user.UserPageRequest;
 import io.swagger.annotations.Api;
@@ -60,6 +61,7 @@ public class UserController {
     @ApiOperation(value = "用户列表查询")
     @PostMapping(value = "pageList", produces = "application/json")
     public Response<Object> pageList(@RequestBody UserPageRequest userPageRequest) {
+        log.info("user pageList input:{}", JSON.toJSONString(userPageRequest));
         try{
             Page<User> userPage = userService.pageList(userPageRequest);
             return Response.succeed(userPage);
@@ -77,7 +79,7 @@ public class UserController {
     @ApiOperation(value = "新增用户")
     @PostMapping(value = "add", produces = "application/json")
     public Response<Object> addUser(@Valid @RequestBody UserAddRequest userAddRequest) {
-        log.info("user add input:{}", JSON.toJSON(userAddRequest));
+        log.info("user add input:{}", JSON.toJSONString(userAddRequest));
         try{
             User user = User.builder()
                     .loginName(userAddRequest.getLoginName())
@@ -91,6 +93,24 @@ public class UserController {
         }catch (Exception e) {
             e.printStackTrace();
             return Response.fail("新增用户异常");
+        }
+    }
+
+    /**
+     * 删除用户
+     * @param userDelRequest
+     * @return
+     */
+    @ApiOperation(value = "删除用户")
+    @PostMapping(value = "delete", produces = "application/json")
+    public Response<Object> deleteUser(@Valid @RequestBody UserDelRequest userDelRequest) {
+        log.info("user del input:{}", JSON.toJSONString(userDelRequest));
+        try{
+            userService.delete("jddata", 5,1);
+            return Response.succeed();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return Response.fail("删除用户异常");
         }
     }
 
