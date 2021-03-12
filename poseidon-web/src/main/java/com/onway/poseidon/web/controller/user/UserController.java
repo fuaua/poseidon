@@ -106,7 +106,6 @@ public class UserController {
     public Response<Object> deleteUser(@Valid @RequestBody UserDelRequest userDelRequest) {
         log.info("user del input:{}", JSON.toJSONString(userDelRequest));
         try{
-            userService.delete("jddata", 5,1);
             return Response.succeed();
         }catch (Exception e) {
             e.printStackTrace();
