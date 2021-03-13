@@ -1,9 +1,16 @@
 package com.onway.poseidon.service.utils;
 
+import com.alibaba.fastjson.JSON;
 import com.onway.poseidon.common.exception.BusinessException;
-import org.apache.http.HttpStatus;
+import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.IndicesClient;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -11,12 +18,20 @@ import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.rest.RestStatus;
+import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: fuheng
@@ -24,6 +39,7 @@ import java.util.Objects;
  * @description: es操作服务类
  */
 @Component
+@Slf4j
 public class ElasticSearchService {
 
     /**
@@ -83,12 +99,65 @@ public class ElasticSearchService {
     public boolean addDocuemnt(String indexName, String jsonData) throws IOException {
         IndexRequest indexRequest = new IndexRequest(indexName);
         indexRequest.source(jsonData, XContentType.JSON);
-        IndexResponse index = restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
-        if (Objects.equals(HttpStatus.SC_CREATED, index.status().getStatus())) {
-            return true;
-        }
-        return false;
+        IndexResponse indexResp = restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
+        return Objects.equals(indexResp.status(), RestStatus.CREATED);
     }
 
+    /**
+     * 判断某id的文档是否存在
+     * @param indexName
+     * @param id
+     */
+    public boolean docExistOfId(String indexName, String id) throws IOException {
+        GetRequest getRequest = new GetRequest(indexName, id);
+        return restHighLevelClient.exists(getRequest, RequestOptions.DEFAULT);
+    }
+
+    /**
+     * 根据id查询文档
+     * @param indexName
+     * @param id
+     * @return
+     * @throws IOException
+     */
+    public GetResponse getDocById(String indexName, String id) throws IOException {
+        GetRequest getRequest = new GetRequest(indexName, id);
+        return restHighLevelClient.get(getRequest, RequestOptions.DEFAULT);
+    }
+
+    /**
+     * 更新某条文档
+     * @param indexName 索引名
+     * @param docId docId
+     * @param jsonDoc
+     * @return
+     * @throws IOException
+     */
+    public boolean updateDoc(String indexName, String docId, String jsonDoc) throws IOException {
+        UpdateRequest request = new UpdateRequest(indexName, docId);
+        request.doc(jsonDoc);
+        UpdateResponse updateResp = restHighLevelClient.update(request, RequestOptions.DEFAULT);
+        return Objects.equals(updateResp.status(), RestStatus.OK);
+    }
+
+    /**
+     * 搜索
+     * @param indexName 索引名
+     * @param map 参数map
+     * @param from 分页起始index
+     * @param size 每页大小
+     * @throws IOException
+     */
+    public String search(String indexName, Map<String, Object> map, Integer from, Integer size) throws IOException {
+        SearchRequest searchRequest = new SearchRequest(indexName);
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        map.forEach((k, v) -> sourceBuilder.query(QueryBuilders.termQuery(k, v)));
+        sourceBuilder.from(from);
+        sourceBuilder.size(size);
+        sourceBuilder.timeout(new TimeValue(10, TimeUnit.SECONDS));
+        searchRequest.source(sourceBuilder);
+        SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+        return JSON.toJSONString(searchResponse);
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.onway.poseidon.service.enums;
+package com.onway.poseidon.common.enums;
 
 /**
  * @author: fuheng
