@@ -1,6 +1,18 @@
-# 未整合的内容
-## redis
-### 分布式锁
-## shiro
-## docker
-## jenkins
+#TODOS
+>redis
+1. distribute lock
+>shiro
+
+>sharding-jdbc
+
+>docker
+
+>jenkins
+
+>spark
+
+>kafka
+
+>zookeeper
+
+>etc
