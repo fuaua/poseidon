@@ -11,16 +11,16 @@
 
 >sharding-jdbc
 
+>kafka
+
+>spark
+
+>zookeeper
+
 >skywalking
 
 >docker
 
 >jenkins
-
->spark
-
->kafka
-
->zookeeper
 
 >etc

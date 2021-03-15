@@ -33,11 +33,6 @@ public class PoPage<T> implements Serializable {
     private Long pageCount;
 
     /**
-     * 显示的页数
-     */
-    private Long pageLinkToShow = 10L;
-
-    /**
      * 数据
      */
     private List<T> list;

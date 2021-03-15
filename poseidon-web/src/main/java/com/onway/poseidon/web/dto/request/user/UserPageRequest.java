@@ -3,6 +3,7 @@ package com.onway.poseidon.web.dto.request.user;
 import com.onway.poseidon.common.base.request.BasePageRequest;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,12 +12,12 @@ import java.util.Date;
  * @description:
  */
 @Data
-public class UserPageRequest extends BasePageRequest {
+public class UserPageRequest implements Serializable {
 
     /**
      * 分页属性
      */
-    private BasePageRequest pageRequest;
+    private BasePageRequest basePageRequest = new BasePageRequest();
 
     /**
      * 用户名

@@ -78,20 +78,15 @@ public class BaseService<T, M extends BaseMapper<T>>{
      * @param pageRequest
      * @return
      */
-    public Page<T> plusPageList(BasePageRequest pageRequest) {
+    public PoPage<T> pageList(BasePageRequest pageRequest, QueryWrapper<T> wrapper) {
         Page<T> page = new Page<>(pageRequest.getPageNum(),pageRequest.getPageSize());
-        return baseMapper.selectPage(page, null);
+        Page<T> tPage = baseMapper.selectPage(page, wrapper);
+        PoPage<T> poPage = new PoPage<>();
+        poPage.setPageSize(tPage.getSize());
+        poPage.setPageNum(tPage.getCurrent());
+        poPage.setPageCount(tPage.getPages());
+        poPage.setList(tPage.getRecords());
+        return poPage;
     }
-
-    public PoPage<T> pageList(BasePageRequest pageRequest) {
-        Page<T> tPage = plusPageList(pageRequest);
-        PoPage<T> page = new PoPage<>();
-        page.setPageSize(tPage.getSize());
-        page.setPageNum(tPage.getCurrent());
-        page.setPageCount(tPage.getPages());
-        page.setList(tPage.getRecords());
-        return page;
-    }
-
 
 }

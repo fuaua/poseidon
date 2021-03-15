@@ -1,7 +1,7 @@
 package com.onway.poseidon.web.controller.user;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.onway.poseidon.common.base.response.Response;
 import com.onway.poseidon.common.enums.StateEnum;
 import com.onway.poseidon.service.entity.User;
@@ -63,8 +63,7 @@ public class UserController {
     public Response<Object> pageList(@RequestBody UserPageRequest userPageRequest) {
         log.info("user pageList input:{}", JSON.toJSONString(userPageRequest));
         try{
-            PoPage<User> userPage = userService.pageList(userPageRequest);
-            log.info(JSON.toJSONString(userPage));
+            PoPage<User> userPage = userService.userPageList(userPageRequest.getBasePageRequest(), new QueryWrapper<>());
             return Response.succeed(userPage);
         }catch (Exception e) {
             e.printStackTrace();
