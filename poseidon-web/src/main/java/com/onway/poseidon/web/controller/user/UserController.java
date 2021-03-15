@@ -6,6 +6,7 @@ import com.onway.poseidon.common.base.response.Response;
 import com.onway.poseidon.common.enums.StateEnum;
 import com.onway.poseidon.service.entity.User;
 import com.onway.poseidon.service.service.UserService;
+import com.onway.poseidon.service.utils.PoPage;
 import com.onway.poseidon.web.dto.request.user.UserAddRequest;
 import com.onway.poseidon.web.dto.request.user.UserDelRequest;
 import com.onway.poseidon.web.dto.request.user.UserLoginRequest;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.validation.Valid;
 import java.util.Date;
 
@@ -63,7 +63,8 @@ public class UserController {
     public Response<Object> pageList(@RequestBody UserPageRequest userPageRequest) {
         log.info("user pageList input:{}", JSON.toJSONString(userPageRequest));
         try{
-            Page<User> userPage = userService.pageList(userPageRequest);
+            PoPage<User> userPage = userService.pageList(userPageRequest);
+            log.info(JSON.toJSONString(userPage));
             return Response.succeed(userPage);
         }catch (Exception e) {
             e.printStackTrace();

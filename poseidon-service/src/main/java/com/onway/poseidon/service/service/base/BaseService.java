@@ -8,10 +8,10 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.onway.poseidon.common.base.request.BasePageRequest;
-import com.onway.poseidon.service.enums.YesOrNotEnum;
+import com.onway.poseidon.common.enums.YesOrNotEnum;
 import com.onway.poseidon.service.utils.DbConstant;
+import com.onway.poseidon.service.utils.PoPage;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.lang.reflect.Method;
 import java.util.Objects;
 
@@ -74,14 +74,23 @@ public class BaseService<T, M extends BaseMapper<T>>{
 
 
     /**
-     * 通用普通分页
+     * mybatisplus通用普通分页
      * @param pageRequest
      * @return
      */
-    public Page<T> pageList(BasePageRequest pageRequest) {
-        QueryWrapper<T> wrapper = new QueryWrapper<>();
+    public Page<T> plusPageList(BasePageRequest pageRequest) {
         Page<T> page = new Page<>(pageRequest.getPageNum(),pageRequest.getPageSize());
-        return baseMapper.selectPage(page, wrapper);
+        return baseMapper.selectPage(page, null);
+    }
+
+    public PoPage<T> pageList(BasePageRequest pageRequest) {
+        Page<T> tPage = plusPageList(pageRequest);
+        PoPage<T> page = new PoPage<>();
+        page.setPageSize(tPage.getSize());
+        page.setPageNum(tPage.getCurrent());
+        page.setPageCount(tPage.getPages());
+        page.setList(tPage.getRecords());
+        return page;
     }
 
 
