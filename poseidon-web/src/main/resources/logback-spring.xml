@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="APP_NAME" value="poseidon-api" />
+    <property name="APP_NAME" value="poseidon-web" />
     <property name="LOG_HOME" value="D:\\" />
     <property name="CONSOLE_LOG_PATTERN"
               value="%green(%d{yyyy-MM-dd HH:mm:SSS}) %highlight(%-5level) [%thread]  %X{user.username} %X{req.requestURI} %X{req.queryString} %logger{36}：%cyan(%msg%n)" />
