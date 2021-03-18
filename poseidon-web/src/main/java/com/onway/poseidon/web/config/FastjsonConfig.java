@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import java.nio.charset.Charset;
+
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +20,13 @@ import java.util.List;
 @Configuration
 public class FastjsonConfig {
 
+    public static final String JSON_DATE_FORMATT_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
     @Bean
     public HttpMessageConverter<Object> configureMessageConverters() {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         FastJsonConfig config = new FastJsonConfig();
+        config.setDateFormat(JSON_DATE_FORMATT_PATTERN);
         config.setSerializerFeatures(
                 // 保留map空的字段
                 SerializerFeature.WriteMapNullValue,

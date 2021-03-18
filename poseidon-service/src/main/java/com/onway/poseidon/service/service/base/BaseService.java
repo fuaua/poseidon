@@ -82,6 +82,7 @@ public class BaseService<T, M extends BaseMapper<T>>{
         Page<T> page = new Page<>(pageRequest.getPageNum(),pageRequest.getPageSize());
         Page<T> tPage = baseMapper.selectPage(page, wrapper);
         PoPage<T> poPage = new PoPage<>();
+        poPage.setTotalCount(tPage.getTotal());
         poPage.setPageSize(tPage.getSize());
         poPage.setPageNum(tPage.getCurrent());
         poPage.setPageCount(tPage.getPages());

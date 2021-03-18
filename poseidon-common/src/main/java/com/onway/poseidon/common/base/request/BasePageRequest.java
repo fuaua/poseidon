@@ -15,7 +15,7 @@ public class BasePageRequest extends BaseRequest implements Serializable {
     /**
      * 每页数据条数
      */
-    private Integer pageSize = 10;
+    private Integer pageSize = 25;
 
     /**
      * 当前第几页

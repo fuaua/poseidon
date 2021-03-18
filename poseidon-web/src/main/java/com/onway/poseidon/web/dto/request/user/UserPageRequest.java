@@ -4,7 +4,6 @@ import com.onway.poseidon.common.base.request.BasePageRequest;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author: fuheng
@@ -22,16 +21,11 @@ public class UserPageRequest implements Serializable {
     /**
      * 用户名
      */
-    private String username;
+    private String userName;
 
     /**
      * 状态
      */
     private Integer state;
-
-    /**
-     * 创建时间
-     */
-    private Date date;
 
 }

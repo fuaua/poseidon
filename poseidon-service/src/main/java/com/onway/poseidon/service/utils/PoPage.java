@@ -18,6 +18,10 @@ import java.util.List;
 public class PoPage<T> implements Serializable {
 
     /**
+     * 数据总条数
+     */
+    private Long totalCount;
+    /**
      * 当前页
      */
     private Long pageNum;
